@@ -1,0 +1,40 @@
+# Cold-start recommendation system configuration
+
+# Data settings
+data:
+  n_users: 500
+  n_items: 1000
+  n_interactions: 10000
+  cold_user_ratio: 0.1
+  cold_item_ratio: 0.1
+  test_ratio: 0.2
+
+# Model settings
+models:
+  content_based:
+    similarity_threshold: 0.1
+  
+  hybrid:
+    content_weight: 0.7
+    collaborative_weight: 0.3
+  
+  cold_start:
+    use_popularity: true
+    use_diversity: true
+
+# Evaluation settings
+evaluation:
+  metrics: ['precision', 'recall', 'hit_rate', 'ndcg', 'map']
+  k_values: [5, 10, 20]
+  primary_metric: 'ndcg@10'
+
+# Demo settings
+demo:
+  n_recommendations: 10
+  show_explanations: true
+  enable_cold_start_testing: true
+
+# Logging
+logging:
+  level: INFO
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
